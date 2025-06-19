@@ -1,0 +1,19 @@
+name: 'Hola Mundo'
+description: 'Mi primera accion'
+author: 'pablo'
+
+inputs:
+  comentario:
+    description: 'Comentario inicial por consola'
+    required: false
+    default: 'hola mundo'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'codigo fuente'
+      run: actions/checkout@v4
+    - name: 'comando echo'
+      run: |
+        echo ${{inputs.comentario}}
+        echo '####################'
