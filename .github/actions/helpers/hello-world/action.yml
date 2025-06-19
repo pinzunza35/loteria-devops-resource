@@ -3,11 +3,11 @@ description: 'Mi primera accion'
 author: 'pablo'
 
 inputs:
-  - comentario:
+  comentario:
     description: 'Comentario inicial por consola'
     required: false
     default: 'hola mundo'
-  - version:
+  version:
     description: 'version nodejs'
     required: true
     default: 18.x
