@@ -3,18 +3,34 @@ description: 'Mi primera accion'
 author: 'pablo'
 
 inputs:
-  comentario:
+  - comentario:
     description: 'Comentario inicial por consola'
     required: false
     default: 'hola mundo'
+  - version:
+    description: 'version nodejs'
+    required: true
+    default: 18.x
 
 runs:
   using: 'composite'
   steps:
-    - name: 'codigo fuente'
-      run: actions/checkout@v4
-    - name: 'comando echo'
-      run: |
-        echo ${{inputs.comentario}}
-        echo '####################'
+    - name: Traer fuente
+      uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{inputs.version}}
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm install
       shell: bash
+    - name: Build project
+      run: npm run build
+      shell: bash
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: node-ejemplo
+        path: dist/
+        retention-days: 14
