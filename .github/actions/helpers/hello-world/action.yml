@@ -13,6 +13,7 @@ runs:
   steps:
     - name: 'codigo fuente'
       run: actions/checkout@v4
+      shell: bash
     - name: 'comando echo'
       run: |
         echo ${{inputs.comentario}}
